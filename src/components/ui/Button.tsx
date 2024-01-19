@@ -1,6 +1,10 @@
-import clsx from "clsx";
-import { twMerge } from "tailwind-merge";
 import cn from "../../utils/cn";
+import {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  ReactNode,
+  forwardRef,
+} from "react";
 
 // `bg-purple-500 btn ${className} ${
 //   variant === "outline"
@@ -8,24 +12,42 @@ import cn from "../../utils/cn";
 //     : ""
 // }`
 
-const Button = ({
-  className,
-  outline,
-}: {
+type TProps = {
   className?: string;
-  outline?: boolean;
-}) => {
-  return (
-    <button
-      className={cn(
-        "bg-purple-500 btn",
-        outline && "border border-white-500 bg-opacity-70",
-        className
-      )}
-    >
-      Click
-    </button>
-  );
+  variant?: string;
+  children: ReactNode;
 };
+
+type TProps2 = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & { variant?: string };
+
+type TRef = HTMLButtonElement;
+
+const Button = forwardRef<TRef, TProps>(
+  ({ className, variant, children, ...rest }, ref) => {
+    const getVariant = (variant: string | undefined) => {
+      switch (variant) {
+        case "outline":
+          return "btn-outline";
+        case "ghost":
+          return "btn-ghost";
+        default:
+          return "btn-solid";
+      }
+    };
+
+    return (
+      <button
+        {...rest}
+        ref={ref}
+        className={cn(getVariant(variant), className)}
+      >
+        {children}
+      </button>
+    );
+  }
+);
 
 export default Button;
