@@ -25,7 +25,7 @@ type TProps2 = DetailedHTMLProps<
 
 type TRef = HTMLButtonElement;
 
-const Button = forwardRef<TRef, TProps>(
+const Button = forwardRef<TRef, TProps2>(
   ({ className, variant, children, ...rest }, ref) => {
     const getVariant = (variant: string | undefined) => {
       switch (variant) {
