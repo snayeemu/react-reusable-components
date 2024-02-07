@@ -18,44 +18,50 @@ const NormalForm = () => {
         "max-w-md": !double,
       })}
     >
-      <div className="border border-blue-500 grid grid-cols-1 justify-items-center gap-5">
+      <div
+        className={cn(
+          "border border-blue-500 grid grid-cols-1 justify-items-center gap-5",
+          { "md:grid-cols-2": double }
+        )}
+      >
         <div className="w-full  max-w-md">
           <label htmlFor="name">Name</label>
-          <input
-            className="block w-full"
-            type="text"
-            id="name"
-            {...register("name")}
-          />
+          <input type="text" id="name" {...register("name")} />
         </div>
 
         <div className="w-full  max-w-md">
           <label htmlFor="name">Email</label>
-          <input
-            className="block w-full"
-            type="text"
-            id="name"
-            {...register("name")}
-          />
+          <input type="text" id="name" {...register("name")} />
         </div>
 
         <div className="w-full  max-w-md">
           <label htmlFor="name">Password</label>
-          <input
-            className="block w-full"
-            type="text"
-            id="name"
-            {...register("name")}
-          />
+          <input type="text" id="name" {...register("name")} />
+        </div>
+
+        <div className="w-full  max-w-md">
+          <label htmlFor="">Select</label>
+          <select>
+            <option>one</option>
+            <option>two</option>
+            <option>tree</option>
+            <option>four</option>
+          </select>
+        </div>
+
+        <div className="w-full  max-w-md">
+          <label htmlFor="">Select</label>
+          <textarea></textarea>
+        </div>
+
+        <div className="w-full  max-w-md">
+          <label className="block" htmlFor="">
+            Select
+          </label>
+          <input type="checkbox" />
         </div>
       </div>
 
-      {/* <select>
-        <option>one</option>
-        <option>two</option>
-        <option>tree</option>
-        <option>four</option>
-      </select> */}
       {/* <button type="submit">Submit</button> */}
     </form>
   );
